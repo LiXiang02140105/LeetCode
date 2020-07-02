@@ -1,0 +1,36 @@
+java的最小堆PriorityQueue改成最大堆
+
+PriorityQueue默认最小堆
+PriorityQueue priorityQueue=new PriorityQueue();
+priorityQueue.add(1);
+priorityQueue.add(2);
+System.out.println(priorityQueue.peek());
+输出1
+
+改成
+
+PriorityQueue priorityQueue=new PriorityQueue(new Comparator<Integer>() {
+    @Override
+    public int compare(Integer o1, Integer o2) {
+        return o2-o1;
+    }
+ 
+    @Override
+    public boolean equals(Object obj) {
+        return false;
+    }
+});
+priorityQueue.add(1);
+priorityQueue.add(2);
+System.out.println(priorityQueue.peek());
+
+输出 2  变成最大堆了
+
+也可以使用lambda表达式
+
+PriorityQueue<Integer> priorityQueue = new PriorityQueue<>((a, b) -> {
+    return b - a;
+});
+priorityQueue.add(1);
+priorityQueue.add(2);
+System.out.println(priorityQueue.peek());
